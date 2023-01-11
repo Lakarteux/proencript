@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="emoji_hover.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Encriptador de Texto</title>
+</head>
+<body>
+    <header>
+        <h1 id="logo" class="logo">😀</h1>
+        <h1 class="titulo arcoiris">Encriptador de Texto</h1>
+    </header>
+    <main>
+        <textarea id="ingreso" required placeholder="Ingrese su texto aqui"></textarea>
+        <div class="resultado">
+                <p class="texto-hold">Ningún mensaje fue encontrado </p>
+                <p class="texto-hold">Ingresa el texto que deseas encriptar o desencriptar</p>
+                <p class="textoresultado"></p>
+            <button onclick="copiar()">Copiar</button>
+        </div>
+        
+        <button onclick="encriptado()" class="botones">Encripte su texto</button>
+        <button onclick="desencriptado()" class="botones">Desencripte su texto</button>
+
+    </main>
+    <footer>
+        <p>Hecho por Andres Leonardo Escobar Pinzon</p>
+        <a href="https://github.com/Lakarteux">Github</a>
+        <a href="https://www.linkedin.com/in/alescobarpinzon/">Linkedin</a>
+    </footer>
+    
+</body>
+</html>
+<script>
+    let logo = document.getElementById("logo");
+    logo.addEventListener("mouseover",cambiarEmoji);
+    var valor;
+    var letras=[];
+    var vocales=["a","e","i","o","u"];
+    var valenc=[];
+    var concatenado;
+    document.getElementsByClassName("textoresultado")[0].style.display="none";
+    function encriptado(){
+        valor=(document.getElementById("ingreso").value).toLowerCase();
+        letras= valor.split("");
+        for(let i=0; i<letras.length;i++){
+            if (vocales.includes(letras[i])){
+                switch(letras[i]){
+                    case "a":
+                    valenc.push("ai");
+                    break;
+                    case "e":
+                    valenc.push("enter");
+                    break;
+                    case "i":
+                    valenc.push("imes");
+                    break;
+                    case "o":
+                    valenc.push("ober");
+                    break;
+                    case "u":
+                    valenc.push("ufat");
+                    break;
+
+                }
+            }else{
+                valenc.push(letras[i]);
+            }
+        }
+        console.log(letras);
+        console.log(valenc);
+        var concatenado= valenc.join('');
+        let parrafos =  document.getElementsByClassName("texto-hold");
+        for(let v= 0; v <parrafos.length; v++){
+            parrafos[v].style.display="none";
+        }
+        document.getElementsByClassName("textoresultado")[0].style.display="block";
+        document.getElementsByClassName("textoresultado")[0].innerHTML=concatenado;
+        valenc=[];
+    }
+    function desencriptado(){
+        valor=(document.getElementById("ingreso").value).toLowerCase();
+        letras= valor.split("");
+        console.log(valor)
+        console.log(letras)
+        if (valor.includes("ai")
+        ||valor.includes("enter")
+        ||valor.includes("imes")
+        ||valor.includes("ober")
+        ||valor.includes("ufat")
+        ){
+            for(let i=0; i<letras.length;i++){
+                if (vocales.includes(letras[i])){
+                    if(letras[i]=="a"&&letras[i+1]=="i"){
+                        letras.splice(i+1, 1)
+                    }
+                    if(letras[i]=="e"&&
+                    letras[i+1]=="n"&&
+                    letras[i+2]=="t"&&
+                    letras[i+3]=="e"&&
+                    letras[i+4]=="r"){
+                        letras.splice(i+1, 4)
+                    }
+                    if(letras[i]=="i"&&
+                    letras[i+1]=="m"&&
+                    letras[i+2]=="e"&&
+                    letras[i+3]=="s"){
+                        letras.splice(i+1, 3)
+                    }
+                    if(letras[i]=="o"&&
+                    letras[i+1]=="b"&&
+                    letras[i+2]=="e"&&
+                    letras[i+3]=="r"){
+                        letras.splice(i+1, 3);
+                    }
+                    if(letras[i]=="u"&&
+                    letras[i+1]=="f"&&
+                    letras[i+2]=="a"&&
+                    letras[i+3]=="t"){
+                        letras.splice(i+1, 3)
+                    }
+                }
+            }
+            concatenado= letras.join('');
+        }else{
+            concatenado=valor;
+        }
+
+        let parrafos =  document.getElementsByClassName("texto-hold");
+        for(let v= 0; v <parrafos.length; v++){
+            parrafos[v].style.display="none";
+        }
+        document.getElementsByClassName("textoresultado")[0].style.display="block";
+        document.getElementsByClassName("textoresultado")[0].innerHTML=concatenado;
+        valdesenc=[];
+    }
+    function copiar(){
+        let textocopiado = document.getElementsByClassName("textoresultado")[0].innerHTML;
+        navigator.clipboard.writeText(textocopiado);
+        alert("Se ha copiado el texto: "+ textocopiado);
+        console.log(textocopiado);
+    }
+</script>

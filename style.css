@@ -62,6 +62,7 @@ textarea:hover::placeholder{
     background: #cd9df3;
     border: solid black 1px;
     border-radius: 5px;
+    overflow-y: scroll;
 }
 .texto-hold{
     display: flex;
@@ -74,8 +75,11 @@ textarea:hover::placeholder{
     display: flex;
     margin: auto;
     font-family: 'Merryweather',serif;
-    font-size: large;
+    font-size: xx-large;
     color:indigo;
+    word-break: break-all;
+    white-space: normal;
+    overflow:auto;
 }
 .resultado button{
     align-self: flex-end;
@@ -175,5 +179,33 @@ footer a{
     }
     91%{
         color: rgb(255,0,127);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .textoresultado{
+        font-size: x-large;
+    }
+}
+@media screen and (min-width:700px) and (max-width: 820px) {
+    .botones{
+        font-size: small;
+    }
+}
+@media screen and (max-width: 700px) {
+    .textoresultado{
+        font-size: large;
+    }
+    .botones{
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .botones{
+        font-size: small;
+    }
+   .resultado button{
+        font-size: smaller;
     }
 }

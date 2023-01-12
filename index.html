@@ -40,7 +40,8 @@
     logo.addEventListener("mouseover",cambiarEmoji);
     var valor;
     var letras=[];
-    var vocales=["a","e","i","o","u"];
+    var vocales=["a","e","i","o","u","á","é","í","ó","ú"];
+    var vocalesaccent=["á","é","í","ó","ú"];
     var valenc=[];
     var concatenado;
     document.getElementsByClassName("textoresultado")[0].style.display="none";
@@ -65,6 +66,21 @@
                     case "u":
                     valenc.push("ufat");
                     break;
+                    case "á":
+                    valenc.push("ai");
+                    break;
+                    case "é":
+                    valenc.push("enter");
+                    break;
+                    case "í":
+                    valenc.push("imes");
+                    break;
+                    case "ó":
+                    valenc.push("ober");
+                    break;
+                    case "ú":
+                    valenc.push("ufat");
+                    break;
 
                 }
             }else{
@@ -87,6 +103,12 @@
         letras= valor.split("");
         console.log(valor)
         console.log(letras)
+        for(let i=0;i<letras.length;i++){
+                if (valor.includes(vocalesaccent[i])){
+                alert("El texto tiene un accento, retirelo para desencriptar");
+                return
+            }
+        }
         if (valor.includes("ai")
         ||valor.includes("enter")
         ||valor.includes("imes")

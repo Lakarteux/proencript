@@ -200,6 +200,11 @@ footer a{
         font-size: small;
     }
 }
+@media screen and (min-width:480px) and (max-width: 640px) {
+    .resultado button{
+        font-size: medium;
+    }
+}
 
 @media screen and (max-width: 480px) {
     .botones{

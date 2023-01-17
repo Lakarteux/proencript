@@ -47,7 +47,7 @@ textarea{
 }
 
 textarea:hover::placeholder{
-    font-style: italic;
+    text-decoration: underline;
 
 }
 
